@@ -195,6 +195,30 @@
     #define OKNXHW_REG2_DEVICE_DISPLAY_HEIGHT 64   // Set here the height of the device display. I.e. 64
     
     // Set there now the generall setting definition for the OFM-DeviceDisplay
+    #define OPENKNX_GPIO_SDA OKNXHW_REG2_HWDISPLAY_I2C_SDA
+    #define OPENKNX_GPIO_SCL OKNXHW_REG2_HWDISPLAY_I2C_SCL
+
+    #define OPENKNX_PCA9557_PINS  0x0100, 0x0101, 0x0102, 0x0103, 0x0104, 0x0105, 0x0106, 0x0107
+    #define OPENKNX_PCA9557_PINS_COUNT 8
+    #define OPENKNX_GPIO_NUM OPENKNX_PCA9557_PINS_COUNT
+    #define OPENKNX_GPIO_TYPES OPENKNX_GPIO_T_PCA9557
+    #define OPENKNX_GPIO_ADDRS 0x18 // PCA9557 I2C address 0x18 (A0-A2 = 0) A0-A2 are connected to GND if A1 is connected to VCC the address is 0x19
+    #define OPENKNX_GPIO_INTS 0xFF
+    #define OPENKNX_GPIO_WIRE Wire1 // OKNXHW_REG2_HWDISPLAY_I2C_INST
+    #define OPENKNX_GPIO_CLOCK 400000            // I2C Taktfrequenz in Hz (400kHz für schnelle I2C-Kommunikation)
+    /// Define the 8 GPIO Pins of the PCA9557 I2C GPIO Expander
+    
+    
+    #define DD_CTRL_PIN0_PRG_BUTTON 0x0100
+    #define DD_CTRL_PIN1_PRG_LED 0x0101
+    #define DD_CTRL_PIN2_INFO_LED1 0x0102
+    #define DD_CTRL_PIN3_INFO_LED2 0x0103
+    #define DD_CTRL_PIN4_BGRND_LED 0x0104
+    #define DD_CTRL_PIN5_DOWN_BUTTON 0x0105
+    #define DD_CTRL_PIN6_OK_BUTTON 0x0106
+    #define DD_CTRL_PIN7_UP_BUTTON 0x0107
+
+
     #define OKNXHW_DEVICE_DISPLAY_I2C_INST OKNXHW_REG2_HWDISPLAY_I2C_INST
     #define OKNXHW_DEVICE_DISPLAY_I2C_SDA OKNXHW_REG2_HWDISPLAY_I2C_SDA
     #define OKNXHW_DEVICE_DISPLAY_I2C_SCL OKNXHW_REG2_HWDISPLAY_I2C_SCL
@@ -283,14 +307,17 @@
     #define KNX_UART_TX_PIN 0
 
     // Application board
-    #define REG2_APP_PIN1 19 // GPIO19 | SPI0 TX  | UART0 RTS | I2C1 SCL | PWM1 B
-    #define REG2_APP_PIN2 28 // GPIO28 | SPI1 RX  | UART0 TX  | I2C0 SDA | PWM6 A | ADC2
-    #define REG2_APP_PIN3 27 // GPIO27 | SPI1 TX  | UART0 RX  | I2C0 SCL | PWM6 B | ADC1
+    #define REG2_APP_PIN1 16 // GPIO16 | SPI0 RX  | UART0 TX  | I2C0 SDA | PWM0 A
+    #define REG2_APP_PIN2 17 // GPIO17 | SPI0 CSn | UART0 RX  | I2C0 SCL | PWM0 B
+    #define REG2_APP_PIN3 18 // GPIO18 | SPI0 SCK | UART0 CTS | I2C1 SDA | PWM1 A
     #define REG2_APP_PIN4 26 // GPIO26 | SPI1 SCK | UART0 CTS | I2C1 SDA | PWM5 A | ADC0
-    #define REG2_APP_PIN5 18 // GPIO18 | SPI0 SCK | UART0 CTS | I2C1 SDA | PWM1 A
-    #define REG2_APP_PIN6 17 // GPIO17 | SPI0 CSn | UART0 RX  | I2C0 SCL | PWM0 B
-    #define REG2_APP_PIN7 16 // GPIO16 | SPI0 RX  | UART0 TX  | I2C0 SDA | PWM0 A
-
+    #define REG2_APP_PIN5 27 // GPIO27 | SPI1 TX  | UART0 RX  | I2C0 SCL | PWM6 B | ADC1
+    #define REG2_APP_PIN6 28 // GPIO28 | SPI1 RX  | UART0 TX  | I2C0 SDA | PWM6 A | ADC2
+    #define REG2_APP_PIN7 19 // GPIO19 | SPI0 TX  | UART0 RTS | I2C1 SCL | PWM1 B
+    //#define REG2_APP_PIN8 GND
+    //#define REG2_APP_PIN9 3V3
+    //#define REG2_APP_PIN10 VCC
+    
     // Application board extended pins
     #define REG2_APP_PIN8 10  // GPIO10 | SPI1 SCK | UART1 CTS | I2C1 SDA | PWM5 A
     #define REG2_APP_PIN9 11  // GPIO11 | SPI1 TX  | UART1 RTS | I2C1 SCL | PWM7 B
@@ -325,3 +352,39 @@
     #define PIN_ETH_INT (REG2_APP_PIN4)  // ETH_RES  - GPIO26 SPI1 SCK UART0 CTS I2C1 SDA PWM5_A SIO PIO0 PIO1
     #define PIN_ETH_RES (REG2_APP_PIN3)  // ETH_INT  - GPIO27 SPI1 TX UART0 RTS I2C1 SCL PWM5_B SIO PIO0 PIO1
 #endif
+
+
+
+/* Here is the pinout of the Raspberry Pi Pico and all the possible functions of each pin:
+
+GP0  - SPI0 RX  | UART0 TX  | I2C0 SDA  | PWM0 A  | -
+GP1  - SPI0 CSn | UART0 RX  | I2C0 SCL  | PWM0 B  | -
+GP2  - SPI0 SCK | UART1 TX  | I2C1 SDA  | PWM1 A  | -
+GP3  - SPI0 TX  | UART1 RX  | I2C1 SCL  | PWM1 B  | -
+GP4  - SPI0 RX  | UART0 TX  | I2C0 SDA  | PWM2 A  | ADC0
+GP5  - SPI0 CSn | UART0 RX  | I2C0 SCL  | PWM2 B  | ADC1
+GP6  - SPI0 SCK | UART1 TX  | I2C1 SDA  | PWM3 A  | ADC2
+GP7  - SPI0 TX  | UART1 RX  | I2C1 SCL  | PWM3 B  | -
+GP8  - SPI1 RX  | UART0 TX  | I2C0 SDA  | PWM4 A  | -
+GP9  - SPI1 CSn | UART0 RX  | I2C0 SCL  | PWM4 B  | -
+GP10 - SPI1 SCK | UART1 TX  | I2C1 SDA  | PWM5 A  | -
+GP11 - SPI1 TX  | UART1 RX  | I2C1 SCL  | PWM5 B  | -
+GP12 - SPI1 RX  | UART0 TX  | I2C0 SDA  | PWM6 A  | -
+GP13 - SPI1 CSn | UART0 RX  | I2C0 SCL  | PWM6 B  | -
+GP14 - SPI1 SCK | UART1 TX  | I2C1 SDA  | PWM7 A  | -
+GP15 - SPI1 TX  | UART1 RX  | I2C1 SCL  | PWM7 B  | -
+GP16 - SPI0 RX  | UART0 TX  | I2C0 SDA  | PWM0 A  | -
+GP17 - SPI0 CSn | UART0 RX  | I2C0 SCL  | PWM0 B  | -
+GP18 - SPI0 SCK | UART1 TX  | I2C1 SDA  | PWM1 A  | -
+GP19 - SPI0 TX  | UART1 RX  | I2C1 SCL  | PWM1 B  | -
+GP20 - SPI0 RX  | UART0 TX  | I2C0 SDA  | PWM2 A  | -
+GP21 - SPI0 CSn | UART0 RX  | I2C0 SCL  | PWM2 B  | -
+GP22 - SPI1 RX  | UART1 TX  | -         | PWM3 A  | -
+GP23 - SPI1 CSn | UART1 RX  | -         | PWM3 B  | -
+GP24 - SPI1 SCK | UART0 TX  | -         | PWM4 A  | -
+GP25 - SPI1 TX  | UART0 RX  | -         | PWM4 B  | -
+GP26 - SPI1 RX  | UART0 TX  | I2C1 SDA  | PWM5 A  | ADC0
+GP27 - SPI1 CSn | UART0 RX  | I2C1 SCL  | PWM5 B  | ADC1
+GP28 - SPI1 SCK | UART1 TX  | I2C0 SDA  | PWM6 A  | ADC2
+GP29 - SPI1 TX  | UART1 RX  | I2C0 SCL  | PWM6 B  | -
+*/
