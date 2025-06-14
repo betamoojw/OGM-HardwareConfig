@@ -92,6 +92,82 @@
 
 #endif
 
+#ifdef DEVICE_UP1_TAS_4X
+    #define DEVICE_ID "UP1-TAS-4x"
+    #define DEVICE_NAME "OpenKNX UP1 Tastsensor"
+
+    #define PROG_LED_PIN (5)
+    #define PROG_LED_PIN_ACTIVE_ON HIGH
+    #define PROG_BUTTON_PIN (4)
+    #define SAVE_INTERRUPT_PIN (2)
+    #define KNX_SERIAL Serial1
+    #define KNX_UART_NUM 0
+    #define KNX_UART_RX_PIN (1)
+    #define KNX_UART_TX_PIN (0)
+
+    #define TASTE1_PIN 26
+    #define TASTE2_PIN 27
+    #define TASTE3_PIN 29
+    #define TASTE4_PIN 24
+
+    #define LED1_R_PIN 18
+    #define LED1_R_PIN_ACTIVE_ON LOW
+    #define LED1_G_PIN 17
+    #define LED1_G_PIN_ACTIVE_ON LOW
+    #define LED1_B_PIN 19
+    #define LED1_B_PIN_ACTIVE_ON LOW
+
+    #define LED2_R_PIN 10
+    #define LED2_R_PIN_ACTIVE_ON LOW
+    #define LED2_G_PIN 11
+    #define LED2_G_PIN_ACTIVE_ON LOW
+    #define LED2_B_PIN 7
+    #define LED2_B_PIN_ACTIVE_ON LOW
+
+    #define TASTE1_EXT_PIN 21
+    #define TASTE2_EXT_PIN 23
+    #define TASTE3_EXT_PIN 16
+    #define TASTE4_EXT_PIN 6
+
+    #define LED1_EXT_R_PIN 25
+    #define LED1_EXT_R_PIN_ACTIVE_ON LOW
+    #define LED1_EXT_G_PIN 24
+    #define LED1_EXT_G_PIN_ACTIVE_ON LOW
+    #define LED1_EXT_B_PIN 22
+    #define LED1_EXT_B_PIN_ACTIVE_ON LOW
+
+    #define LED2_EXT_R_PIN 20
+    #define LED2_EXT_R_PIN_ACTIVE_ON LOW
+    #define LED2_EXT_G_PIN 14
+    #define LED2_EXT_G_PIN_ACTIVE_ON LOW
+    #define LED2_EXT_B_PIN 15
+    #define LED2_EXT_B_PIN_ACTIVE_ON LOW
+
+    #define I2C_WIRE Wire
+    #define I2C_SDA_PIN 12
+    #define I2C_SCL_PIN 13
+
+
+    #define OPENKNX_BI_GPIO_PINS 9,8
+    #define OPENKNX_BI_GPIO_COUNT 2
+    #define OPENKNX_BI_ONLEVEL LOW
+
+    // since INPUT_PULLDOWN is the default state and LED are Active LOW, LED must be deativated by setting to PULLUP
+    #define DEVICE_INIT() \
+        pinMode(LED1_R_PIN, INPUT_PULLUP); \
+        pinMode(LED1_G_PIN, INPUT_PULLUP); \
+        pinMode(LED1_B_PIN, INPUT_PULLUP); \
+        pinMode(LED2_R_PIN, INPUT_PULLUP); \
+        pinMode(LED2_G_PIN, INPUT_PULLUP); \
+        pinMode(LED2_B_PIN, INPUT_PULLUP); \
+        pinMode(LED1_EXT_R_PIN, INPUT_PULLUP); \
+        pinMode(LED1_EXT_G_PIN, INPUT_PULLUP); \
+        pinMode(LED1_EXT_B_PIN, INPUT_PULLUP); \
+        pinMode(LED2_EXT_R_PIN, INPUT_PULLUP); \
+        pinMode(LED2_EXT_G_PIN, INPUT_PULLUP); \
+        pinMode(LED2_EXT_B_PIN, INPUT_PULLUP);
+#endif
+
 #ifdef DEVICE_UP1_GW_RS485
     #define DEVICE_ID "UP1-GW-RS485"
     #define DEVICE_NAME "OpenKNX UP1 RS485 Gateway"
@@ -100,6 +176,7 @@
 
     #define OKNXHW_UP1_APP_RS485
 #endif
+
 
 #ifdef DEVICE_UP1_GW_IR
     #define DEVICE_ID "UP1-GW-IR"
