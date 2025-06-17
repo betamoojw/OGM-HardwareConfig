@@ -94,7 +94,7 @@
 
 #ifdef DEVICE_UP1_TAS_4X
     #define DEVICE_ID "UP1-TAS-4x"
-    #define DEVICE_NAME "OpenKNX UP1 Tastsensor"
+    #define DEVICE_NAME "OpenKNX UP1 Taster"
 
     #define PROG_LED_PIN (5)
     #define PROG_LED_PIN_ACTIVE_ON HIGH
