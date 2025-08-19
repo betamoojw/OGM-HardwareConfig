@@ -108,7 +108,7 @@
     #define TASTE1_PIN 26
     #define TASTE2_PIN 27
     #define TASTE3_PIN 29
-    #define TASTE4_PIN 24
+    #define TASTE4_PIN 28
 
     #define LED1_R_PIN 18
     #define LED1_R_PIN_ACTIVE_ON LOW
