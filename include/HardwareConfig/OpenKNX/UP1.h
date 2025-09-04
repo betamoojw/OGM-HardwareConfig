@@ -111,18 +111,14 @@
     #define TASTE4_PIN 28
 
     #define LED1_R_PIN 18
-    #define LED1_R_PIN_ACTIVE_ON LOW
+    #define LED1_ACTIVE_ON LOW
     #define LED1_G_PIN 17
-    #define LED1_G_PIN_ACTIVE_ON LOW
     #define LED1_B_PIN 19
-    #define LED1_B_PIN_ACTIVE_ON LOW
 
     #define LED2_R_PIN 10
-    #define LED2_R_PIN_ACTIVE_ON LOW
+    #define LED2_ACTIVE_ON LOW
     #define LED2_G_PIN 11
-    #define LED2_G_PIN_ACTIVE_ON LOW
     #define LED2_B_PIN 7
-    #define LED2_B_PIN_ACTIVE_ON LOW
 
     #define TASTE1_EXT_PIN 21
     #define TASTE2_EXT_PIN 23
@@ -130,18 +126,14 @@
     #define TASTE4_EXT_PIN 6
 
     #define LED1_EXT_R_PIN 25
-    #define LED1_EXT_R_PIN_ACTIVE_ON LOW
+    #define LED1_EXT_ACTIVE_ON LOW
     #define LED1_EXT_G_PIN 24
-    #define LED1_EXT_G_PIN_ACTIVE_ON LOW
     #define LED1_EXT_B_PIN 22
-    #define LED1_EXT_B_PIN_ACTIVE_ON LOW
 
     #define LED2_EXT_R_PIN 20
-    #define LED2_EXT_R_PIN_ACTIVE_ON LOW
+    #define LED2_EXT_ACTIVE_ON LOW
     #define LED2_EXT_G_PIN 14
-    #define LED2_EXT_G_PIN_ACTIVE_ON LOW
     #define LED2_EXT_B_PIN 15
-    #define LED2_EXT_B_PIN_ACTIVE_ON LOW
 
     #define I2C_WIRE Wire
     #define I2C_SDA_PIN 12
