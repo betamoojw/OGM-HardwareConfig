@@ -139,10 +139,11 @@
     #define I2C_SDA_PIN 12
     #define I2C_SCL_PIN 13
 
-
     #define OPENKNX_BI_GPIO_PINS 9,8
     #define OPENKNX_BI_GPIO_COUNT 2
     #define OPENKNX_BI_ONLEVEL LOW
+
+    #define OPENKNX_SLED_IDs 10,11,12,13
 
     // since INPUT_PULLDOWN is the default state and LED are Active LOW, LED must be deativated by setting to PULLUP
     #define DEVICE_INIT() \
@@ -158,6 +159,13 @@
         pinMode(LED2_EXT_R_PIN, INPUT_PULLUP); \
         pinMode(LED2_EXT_G_PIN, INPUT_PULLUP); \
         pinMode(LED2_EXT_B_PIN, INPUT_PULLUP);
+
+    #define LED_INIT() \
+        openknx.leds.addLed(new OpenKNX::Led::GPIO(PROG_LED_PIN, PROG_LED_PIN_ACTIVE_ON), OpenKNX::Led::LED_TYPE_PROG); \
+        openknx.leds.addLed(new OpenKNX::Led::GPIO_RGB(LED1_R_PIN, LED1_G_PIN, LED1_B_PIN, LED1_ACTIVE_ON, 255, 255, 255), OpenKNX::Led::LED_TYPE_USER); \
+        openknx.leds.addLed(new OpenKNX::Led::GPIO_RGB(LED2_R_PIN, LED2_G_PIN, LED2_B_PIN, LED1_ACTIVE_ON, OpenKNX::Led::LED_TYPE_USER+1); \
+        openknx.leds.addLed(new OpenKNX::Led::GPIO_RGB(LED1_EXT_R_PIN, LED1_EXT_G_PIN, LED1_EXT_B_PIN, LED1_ACTIVE_ON, OpenKNX::Led::LED_TYPE_USER+2); \
+        openknx.leds.addLed(new OpenKNX::Led::GPIO_RGB(LED2_EXT_R_PIN, LED2_EXT_G_PIN, LED2_RXT_B_PIN, LED1_ACTIVE_ON, OpenKNX::Led::LED_TYPE_USER+3);
 #endif
 
 #ifdef DEVICE_UP1_GW_RS485
