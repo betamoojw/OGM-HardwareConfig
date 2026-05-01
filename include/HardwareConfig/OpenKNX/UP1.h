@@ -353,8 +353,8 @@
 #pragma region "UP1 Apps"
 
 #ifdef OKNXHW_UP1_APP_IR
-    #define IR_PIN_REC (13)
-    #define IR_PIN_SEND (2)
+    #define IR_RECV_PIN (13)
+    #define IR_SEND_PIN (2)
 #endif
 
 #pragma endregion
